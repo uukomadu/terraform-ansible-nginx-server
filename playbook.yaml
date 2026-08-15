@@ -1,0 +1,35 @@
+---
+- name: Configure the Tech Challenge 3 web server
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: Install Nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: true
+
+    - name: Deploy the Hello World webpage
+      ansible.builtin.copy:
+        content: |
+          <!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <title>Tech Challenge 3</title>
+          </head>
+          <body>
+            <h1>Hello, World!</h1>
+          </body>
+          </html>
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: Ensure Nginx is enabled and running
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
