@@ -25,7 +25,6 @@ The deployment includes:
 - Understanding the Terraform and Ansible code
 
 3. The URL of the deployed webpage.
-4. Repository access for the project mentor.
 
 # Solution Overview
 
